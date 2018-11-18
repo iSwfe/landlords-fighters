@@ -1,2 +1,2 @@
 server:
-        port: 888
+  port: 80

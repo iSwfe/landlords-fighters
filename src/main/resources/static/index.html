@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>index</title>
+
+        <script type="application/javascript">
+            let webSocket = null;
+            if ('WebSocket' in window) {
+                webSocket = new WebSocket("ws://localhost/webSocket/build");
+                console.log('buildWebSocket(): webSocket build successed.');
+            } else {
+                alert('WebSocket is not support, please use Chrome ~');
+            }
+
+            let sendMessage = (msg) => {
+                webSocket.send(msg);
+            };
+
+            webSocket.onmessage = (event) => {
+                setServerOut(event.data);
+            };
+
+            //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+            window.onbeforeunload = function () {
+                webSocket.close();
+            };
+
+            let getUserInput = () => {
+                return document.getElementById('in_text').value;
+            };
+
+            let setServerOut = (msg) => {
+                document.getElementById('out_from_server').value = msg;
+            };
+        </script>
+    </head>
+
+    <body>
+        hello world !!
+        <br/>
+
+        <input id="in_text" type="text" placeholder="键入内容以发送~" />
+        <button type="button" onclick="sendMessage(getUserInput());">发送消息</button>
+        <br/>
+
+        <input id="out_from_server" type="text" placeholder="接收服务器响应" disabled="disabled" size="100px" />
+    </body>
+</html>

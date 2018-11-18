@@ -9,7 +9,7 @@
     <!--<modules>-->
         <!--<module>landlords-fighters-start</module>-->
     <!--</modules>-->
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>landlords-fighters</name>
     <description>Fight against Landlords Game.</description>
@@ -42,6 +42,12 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-websocket</artifactId>
+            </dependency>
+
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -54,17 +60,26 @@
                 <version>6.0.5</version>
                 <scope>runtime</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.0</version>
                 <optional>true</optional>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${springboot.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <!--热部署-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional>
             </dependency>
         </dependencies>
     <!--</dependencyManagement>-->
